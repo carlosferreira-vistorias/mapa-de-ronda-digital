@@ -43,7 +43,10 @@ sec("03","REGISTROS DE RONDAS");box(40,y-18,515,23,"0.027 0.106 0.471");[["PONTO
 ensure(105);y-=10;ln(42,y,553,y);y-=18;t(42,y,8,"ASSINATURA DO SUPERVISOR",true,"0.35 0.39 0.48");t(330,y,8,"ASSINATURA DO RESPONSÁVEL",true,"0.35 0.39 0.48");y-=37;ln(42,y,265,y);ln(330,y,553,y);pages.push(o.splice(0));
 let objs=["","",`<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica /Encoding /WinAnsiEncoding >>`,`<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica-Bold /Encoding /WinAnsiEncoding >>`],kids=[];
 let imageBinary="";for(let i=0;i<logoBytes.length;i++)imageBinary+=logoBytes.charCodeAt(i);
-const imageId=objs.push(`<< /Type /XObject /Subtype /Image /Width 240 /Height 240 /ColorSpace /DeviceRGB /BitsPerComponent 8 /Filter /DCTDecode /Length ${imageBinary.length} >>\\nstream\\n${imageBinary}\\nendstream`);
+const imageId=objs.push(`<< /Type /XObject /Subtype /Image /Width 240 /Height 240 /ColorSpace /DeviceRGB /BitsPerComponent 8 /Filter /DCTDecode /Length ${imageBinary.length} >>
+stream
+${imageBinary}
+endstream`);
 pages.forEach(p=>{let stream=p.join("\n"),ci=objs.push(`<< /Length ${stream.length} >>\nstream\n${stream}\nendstream`),pi=objs.push(`<< /Type /Page /Parent 2 0 R /MediaBox [0 0 ${W} ${H}] /Resources << /Font << /F1 3 0 R /F2 4 0 R >> /XObject << /Im1 ${imageId} 0 R >> >> /Contents ${ci} 0 R >>`);kids.push(`${pi} 0 R`)});
 objs[0]="<< /Type /Catalog /Pages 2 0 R >>";objs[1]=`<< /Type /Pages /Kids [${kids.join(" ")}] /Count ${kids.length} >>`;
 let pdf="%PDF-1.4\n",offs=[0];objs.forEach((v,i)=>{offs.push(pdf.length);pdf+=`${i+1} 0 obj\n${v}\nendobj\n`});let x=pdf.length;pdf+=`xref\n0 ${objs.length+1}\n0000000000 65535 f \n`;offs.slice(1).forEach(v=>pdf+=String(v).padStart(10,"0")+" 00000 n \n");pdf+=`trailer\n<< /Size ${objs.length+1} /Root 1 0 R >>\nstartxref\n${x}\n%%EOF`;return new Blob([new Uint8Array([...pdf].map(c=>c.charCodeAt(0)))],{type:"application/pdf"})}
