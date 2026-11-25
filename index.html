@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="pt-BR"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#071b78"><meta name="description" content="Mapa de Ronda Digital do Grupo Souza Lima">
+<title>Mapa de Ronda Digital | Grupo Souza Lima</title>
+<link rel="manifest" href="./manifest.webmanifest"><link rel="icon" href="./icons/icon-192.png"><link rel="stylesheet" href="./styles.css">
+</head><body>
+<header class="topbar"><div class="brand"><img src="./assets/logo-souza-lima.png" alt="Logo Grupo Souza Lima"><div><strong>GRUPO SOUZA LIMA</strong><span>MAPA DE RONDA DIGITAL</span></div></div><div class="connection"><i></i><span id="connectionText">Verificando conexão</span></div></header>
+<main class="shell">
+<section class="welcome"><div><p class="eyebrow">REGISTRO OPERACIONAL</p><h1>Mapa de Ronda</h1><p>Preencha os dados da operação e registre cada ponto vistoriado.</p></div><div class="welcome-icon">✓</div></section>
+<div class="save-status" id="saveStatus" role="status">Dados armazenados neste aparelho.</div>
+<form id="rondaForm" autocomplete="on">
+<section class="panel"><div class="section-heading"><b>01</b><div><h2>Identificação</h2><p>Dados do supervisor e do veículo</p></div></div>
+<div class="fields"><label>Placa do veículo<input id="placa" placeholder="ABC-1D23" maxlength="10"></label><label>Data<input id="data" type="date"></label><label class="wide">Nome do supervisor<input id="vigilante" placeholder="Nome completo"></label><label>RE (registro do empregado)<input id="re" inputmode="numeric" placeholder="Número do RE"></label></div></section>
+<section class="panel"><div class="section-heading"><b>02</b><div><h2>Dados da operação</h2><p>Informações de início e encerramento</p></div></div>
+<div class="fields"><label class="wide">Posto / Unidade<input id="posto" placeholder="Identificação do posto ou unidade"></label><label>Quilometragem inicial<input id="kmInicial" type="number" min="0" step="1" placeholder="KM inicial"></label><label>Horário inicial<input id="horaInicial" type="time"></label><label>Quilometragem final<input id="kmFinal" type="number" min="0" step="1" placeholder="KM final"></label><label>Horário final<input id="horaFinal" type="time"></label></div></section>
+<section class="panel"><div class="section-heading"><b>03</b><div><h2>Registros de rondas</h2><p>Adicione cada ponto vistoriado</p></div></div><div id="rounds" class="rounds"></div><button type="button" class="btn add" id="addRound">＋ Adicionar ponto de ronda</button></section>
+<div class="manual-note">Combustível e assinaturas permanecem em branco no PDF para preenchimento manual. A seção de ocorrências foi removida.</div>
+<div class="actions"><button type="button" class="btn primary" id="generatePdf">▤ Gerar PDF do mapa</button><button type="button" class="btn secondary" id="sharePdf">↗ Compartilhar PDF</button></div>
+<button type="button" class="btn clear" id="newMap">Iniciar novo mapa / limpar dados</button>
+</form><footer>GRUPO SOUZA LIMA · MAPA DE RONDA DIGITAL</footer></main><div id="toast" class="toast" role="status" aria-live="polite"></div>
+<script src="./app.js"></script></body></html>
